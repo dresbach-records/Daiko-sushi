@@ -1,16 +1,16 @@
 
 import React, { useState } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import PublicLanding from './pages/PublicLanding';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
-import AdminMenu from './pages/AdminMenu';
-import AdminEditHome from './pages/AdminEditHome';
-import AdminExperience from './pages/AdminExperience';
-import AdminReviews from './pages/AdminReviews';
-import AdminIdentity from './pages/AdminIdentity';
-import AdminContact from './pages/AdminContact';
-import AdminUsers from './pages/AdminUsers';
+import PublicLanding from './pages/PublicLanding.tsx';
+import AdminLogin from './pages/AdminLogin.tsx';
+import AdminDashboard from './pages/AdminDashboard.tsx';
+import AdminMenu from './pages/AdminMenu.tsx';
+import AdminEditHome from './pages/AdminEditHome.tsx';
+import AdminExperience from './pages/AdminExperience.tsx';
+import AdminReviews from './pages/AdminReviews.tsx';
+import AdminIdentity from './pages/AdminIdentity.tsx';
+import AdminContact from './pages/AdminContact.tsx';
+import AdminUsers from './pages/AdminUsers.tsx';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
