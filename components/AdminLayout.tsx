@@ -34,6 +34,11 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     window.location.reload();
   };
 
+  const openSupport = () => {
+    const message = encodeURIComponent("Olá Tech Lab! Preciso de suporte no painel administrativo do Daikô Sushi.");
+    window.open(`https://wa.me/5551981446019?text=${message}`, '_blank');
+  };
+
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-zinc-950 font-jakarta transition-colors duration-300">
       {/* Sidebar Desktop */}
@@ -65,7 +70,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="p-6 border-t border-slate-100 dark:border-zinc-800">
           <button 
             onClick={() => document.documentElement.classList.toggle('dark')}
-            className="w-full flex items-center justify-center gap-2 p-3 bg-slate-50 dark:bg-zinc-800 rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-95 transition-all dark:text-white"
+            className="w-full flex items-center justify-center gap-2 p-3 bg-slate-50 dark:bg-zinc-800 rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-95 transition-all dark:text-white mb-2"
           >
             <span className="material-symbols-outlined text-lg">dark_mode</span>
             Alternar Tema
@@ -74,7 +79,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 flex flex-col min-h-screen">
+      <main className="flex-1 ml-64 flex flex-col min-h-screen relative">
         <header className="h-20 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-slate-100 dark:border-zinc-800 px-10 flex items-center justify-between sticky top-0 z-[50]">
           <h2 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em]">Painel Administrativo</h2>
           
@@ -125,6 +130,14 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         <span className="material-symbols-outlined text-xl">{item.icon}</span> {item.label}
                       </button>
                     ))}
+                    
+                    {/* Opção de Suporte no Dropdown */}
+                    <button 
+                      onClick={openSupport}
+                      className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary transition-all"
+                    >
+                      <span className="material-symbols-outlined text-xl">help_center</span> Suporte Técnico
+                    </button>
                   </div>
 
                   <div className="mx-8 my-4 border-t border-slate-50 dark:border-zinc-800"></div>
@@ -143,8 +156,26 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
         </header>
 
-        <div className="p-10 max-w-7xl mx-auto w-full">
+        <div className="p-10 max-w-7xl mx-auto w-full flex-1">
           {children}
+        </div>
+
+        {/* Botão Flutuante de Suporte Tech Lab */}
+        <div className="fixed bottom-8 right-8 z-[60] flex items-center">
+          <button 
+            onClick={openSupport}
+            className="group relative flex items-center bg-primary text-white p-4 rounded-full shadow-2xl shadow-primary/40 hover:scale-110 active:scale-95 transition-all duration-500 overflow-hidden"
+          >
+            {/* Efeito Pulse */}
+            <span className="absolute inset-0 rounded-full bg-white/20 animate-ping"></span>
+            
+            <div className="flex items-center gap-0 group-hover:gap-3 transition-all duration-500 max-w-[40px] group-hover:max-w-[200px]">
+              <span className="material-symbols-outlined text-2xl relative z-10">support_agent</span>
+              <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                Suporte Tech Lab
+              </span>
+            </div>
+          </button>
         </div>
       </main>
     </div>
