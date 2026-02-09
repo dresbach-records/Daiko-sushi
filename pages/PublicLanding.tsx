@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import { IMAGES, INITIAL_MENU, INITIAL_HOME_CONTENT, getStorageData } from '../constants';
 
 const TechLabLogo = () => (
-  <svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-auto">
-    <path d="M10 10H30V15H22.5V30H17.5V15H10V10Z" fill="currentColor" />
-    <path d="M35 10H50V14H40V18H48V22H40V26H50V30H35V10Z" fill="currentColor" />
-    <path d="M65 10H55V30H70V26H60V14H65V10Z" fill="currentColor" />
-    <path d="M75 10V30H80V22H88V30H93V10H88V18H80V10H75Z" fill="currentColor" />
-    <rect x="100" y="10" width="5" height="20" fill="#00C2C7" />
-    <path d="M110 30L120 10L130 30H125L120 20L115 30H110Z" fill="currentColor" />
-    <path d="M135 10V30H145V26H140V14H145V10H135Z" fill="currentColor" />
-  </svg>
+  <div className="flex items-center gap-2 group-hover:opacity-100 opacity-80 transition-opacity">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="#00C2C7"/>
+      <path d="M8 10H24V13H17.5V24H14.5V13H8V10Z" fill="white"/>
+    </svg>
+    <div className="flex flex-col items-start leading-none">
+      <span className="text-[14px] font-black tracking-tight text-white">TECH LAB</span>
+      <span className="text-[8px] font-bold tracking-[0.2em] text-primary-teal/80 uppercase">Software Solutions</span>
+    </div>
+  </div>
 );
 
 const PublicLanding: React.FC = () => {
@@ -21,7 +22,7 @@ const PublicLanding: React.FC = () => {
   const [content, setContent] = useState(getStorageData('daiko_home', INITIAL_HOME_CONTENT));
   const [contact, setContact] = useState(getStorageData('daiko_contact', {
     address: 'R. Marechal Floriano, 1234 - Centro, Taquara, RS',
-    whatsapp: '(51) 99876-5432',
+    whatsapp: '(51) 98144-6019',
     phone: '(51) 3541-0000',
     hours: 'Seg a Sáb: 19h às 23:30h'
   }));
@@ -31,6 +32,10 @@ const PublicLanding: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const openImage = (url: string) => {
+    window.open(url, '_blank');
+  };
 
   return (
     <div className="font-jakarta bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary/30">
@@ -75,7 +80,7 @@ const PublicLanding: React.FC = () => {
         </div>
       </section>
 
-      {/* Menu */}
+      {/* Menu com Links Diretos para Imagens */}
       <section id="cardápio" className="py-32 px-6 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -86,13 +91,23 @@ const PublicLanding: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {menuItems.filter((i: any) => i.status === 'available').map((item: any) => (
               <div key={item.id} className="group cursor-pointer bg-slate-50 dark:bg-zinc-900 rounded-[2.5rem] overflow-hidden shadow-lg border border-slate-100 dark:border-zinc-800 transition-all hover:-translate-y-2">
-                <div className="h-64 overflow-hidden">
+                <div 
+                  className="h-64 overflow-hidden relative"
+                  onClick={() => openImage(item.imageUrl)}
+                  title="Clique para ver a imagem completa"
+                >
                   <img src={item.imageUrl} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.name} />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                  </div>
                 </div>
                 <div className="p-8">
                   <h3 className="text-xl font-extrabold dark:text-white mb-2">{item.name}</h3>
                   <p className="text-slate-400 text-sm mb-6 line-clamp-2">{item.description}</p>
-                  <p className="text-lg font-black text-primary">R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</p>
+                  <div className="flex justify-between items-center">
+                    <p className="text-lg font-black text-primary">R$ {parseFloat(item.price).toFixed(2).replace('.', ',')}</p>
+                    <span className="material-symbols-outlined text-slate-300 dark:text-zinc-700">arrow_forward_ios</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -103,8 +118,11 @@ const PublicLanding: React.FC = () => {
       {/* Sobre */}
       <section id="sobre" className="py-32 px-6 bg-slate-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="rounded-[3rem] overflow-hidden shadow-3xl aspect-video">
-            <img src={IMAGES.SUSHI_SPREAD} className="w-full h-full object-cover" alt="Mesa Farta Daikô" />
+          <div className="rounded-[3rem] overflow-hidden shadow-3xl aspect-video relative group cursor-pointer" onClick={() => openImage(IMAGES.SUSHI_SPREAD)}>
+            <img src={IMAGES.SUSHI_SPREAD} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Mesa Farta Daikô" />
+            <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+               <span className="material-symbols-outlined text-white text-5xl">photo_camera</span>
+            </div>
           </div>
           <div>
             <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px]">Nossa História</span>
@@ -149,22 +167,20 @@ const PublicLanding: React.FC = () => {
              </div>
           </div>
 
-          <div className="w-full pt-16 border-t border-white/5 flex flex-col items-center gap-10">
-            <p className="text-white/30 text-[11px] font-medium tracking-wide">© 2026 Daikô Sushi Bar. Todos os direitos reservados.</p>
-            
-            <div className="flex flex-col items-center gap-3">
-               <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/10">Desenvolvido por</span>
+          <div className="w-full pt-16 border-t border-white/5 flex flex-col items-center gap-12">
+            <div className="flex flex-col items-center gap-4 group">
+               <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">Desenvolvido com excelência por</span>
                <a 
                  href="https://vini-amaral-portfolio.vercel.app/" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="h-14 flex items-center justify-center hover:scale-105 transition-all duration-300 text-white/60 hover:text-white"
-                 title="Visite o portfólio da Tech Lab"
+                 className="flex flex-col items-center gap-2 hover:scale-105 transition-all duration-500"
+                 title="Visite o portfólio de Vini Amaral - Tech Lab"
                >
                  <TechLabLogo />
                </a>
-               <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em]">Tech Lab Ltda.</p>
             </div>
+            <p className="text-white/30 text-[10px] font-medium tracking-wide">© 2026 Daikô Sushi Bar & Tech Lab AI. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>

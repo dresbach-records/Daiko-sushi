@@ -35,7 +35,8 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   const openSupport = () => {
-    const message = encodeURIComponent("Olá Tech Lab! Preciso de suporte no painel administrativo do Daikô Sushi.");
+    const message = encodeURIComponent("Olá Tech Lab! Preciso de suporte técnico no painel do Daikô Sushi Bar.");
+    // Telefone atualizado conforme README: (51) 98144-6019
     window.open(`https://wa.me/5551981446019?text=${message}`, '_blank');
   };
 
@@ -131,12 +132,11 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       </button>
                     ))}
                     
-                    {/* Opção de Suporte no Dropdown */}
                     <button 
                       onClick={openSupport}
                       className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary transition-all"
                     >
-                      <span className="material-symbols-outlined text-xl">help_center</span> Suporte Técnico
+                      <span className="material-symbols-outlined text-xl text-primary">contact_support</span> Falar com Tech Lab
                     </button>
                   </div>
 
@@ -164,10 +164,10 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="fixed bottom-8 right-8 z-[60] flex items-center">
           <button 
             onClick={openSupport}
-            className="group relative flex items-center bg-primary text-white p-4 rounded-full shadow-2xl shadow-primary/40 hover:scale-110 active:scale-95 transition-all duration-500 overflow-hidden"
+            className="group relative flex items-center bg-gradient-to-r from-primary to-primary-teal text-white p-4 rounded-full shadow-2xl shadow-primary/40 hover:scale-110 active:scale-95 transition-all duration-500 overflow-hidden"
           >
             {/* Efeito Pulse */}
-            <span className="absolute inset-0 rounded-full bg-white/20 animate-ping"></span>
+            <span className="absolute inset-0 rounded-full bg-white/30 animate-ping"></span>
             
             <div className="flex items-center gap-0 group-hover:gap-3 transition-all duration-500 max-w-[40px] group-hover:max-w-[200px]">
               <span className="material-symbols-outlined text-2xl relative z-10">support_agent</span>
