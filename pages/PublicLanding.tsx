@@ -3,6 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IMAGES, INITIAL_MENU, INITIAL_HOME_CONTENT, getStorageData } from '../constants';
 
+const TechLabLogo = () => (
+  <svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-auto">
+    <path d="M10 10H30V15H22.5V30H17.5V15H10V10Z" fill="currentColor" />
+    <path d="M35 10H50V14H40V18H48V22H40V26H50V30H35V10Z" fill="currentColor" />
+    <path d="M65 10H55V30H70V26H60V14H65V10Z" fill="currentColor" />
+    <path d="M75 10V30H80V22H88V30H93V10H88V18H80V10H75Z" fill="currentColor" />
+    <rect x="100" y="10" width="5" height="20" fill="#00C2C7" />
+    <path d="M110 30L120 10L130 30H125L120 20L115 30H110Z" fill="currentColor" />
+    <path d="M135 10V30H145V26H140V14H145V10H135Z" fill="currentColor" />
+  </svg>
+);
+
 const PublicLanding: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuItems, setMenuItems] = useState(getStorageData('daiko_menu', INITIAL_MENU));
@@ -142,7 +154,15 @@ const PublicLanding: React.FC = () => {
             
             <div className="flex flex-col items-center gap-3">
                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/10">Desenvolvido por</span>
-               <img src="logotech.png" alt="Tech Lab Ltda." className="h-12 w-auto opacity-50 hover:opacity-100 transition-all filter brightness-200" />
+               <a 
+                 href="https://vini-amaral-portfolio.vercel.app/" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="h-14 flex items-center justify-center hover:scale-105 transition-all duration-300 text-white/60 hover:text-white"
+                 title="Visite o portfólio da Tech Lab"
+               >
+                 <TechLabLogo />
+               </a>
                <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em]">Tech Lab Ltda.</p>
             </div>
           </div>
