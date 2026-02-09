@@ -59,7 +59,7 @@ const AdminLogin: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
         </div>
         
         <p className="text-center mt-12 text-slate-400 text-xs font-medium">
-          Daikô Sushi Bar &copy; 2024. Versão 2.4.0
+          Daikô Sushi Bar &copy; 2026. Versão 2.4.0
         </p>
       </div>
     </div>

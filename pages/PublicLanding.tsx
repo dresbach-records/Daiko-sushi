@@ -7,6 +7,12 @@ const PublicLanding: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuItems, setMenuItems] = useState(getStorageData('daiko_menu', INITIAL_MENU));
   const [content, setContent] = useState(getStorageData('daiko_home', INITIAL_HOME_CONTENT));
+  const [contact, setContact] = useState(getStorageData('daiko_contact', {
+    address: 'R. Marechal Floriano, 1234 - Centro, Taquara, RS',
+    whatsapp: '(51) 99876-5432',
+    phone: '(51) 3541-0000',
+    hours: 'Seg a Sáb: 19h às 23:30h'
+  }));
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -57,7 +63,7 @@ const PublicLanding: React.FC = () => {
         </div>
       </section>
 
-      {/* Menu / Mesa Farta */}
+      {/* Menu */}
       <section id="cardápio" className="py-32 px-6 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -85,7 +91,7 @@ const PublicLanding: React.FC = () => {
       {/* Sobre */}
       <section id="sobre" className="py-32 px-6 bg-slate-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="rounded-[3rem] overflow-hidden shadow-3xl">
+          <div className="rounded-[3rem] overflow-hidden shadow-3xl aspect-video">
             <img src={IMAGES.SUSHI_SPREAD} className="w-full h-full object-cover" alt="Mesa Farta Daikô" />
           </div>
           <div>
@@ -107,12 +113,40 @@ const PublicLanding: React.FC = () => {
         </div>
       </section>
 
-      <footer className="py-20 bg-background-dark text-white text-center border-t border-white/5">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-8 h-8 bg-primary rounded-lg"></div>
-          <span className="font-extrabold text-xl tracking-tighter">DAIKÔ</span>
+      <footer id="contato" className="py-24 bg-background-dark text-white border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+          <div className="flex items-center gap-3 mb-10">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+              <span className="material-symbols-outlined text-white">restaurant</span>
+            </div>
+            <span className="font-extrabold text-2xl tracking-tighter">DAIKÔ</span>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mb-16 max-w-4xl">
+             <div className="space-y-2">
+               <span className="material-symbols-outlined text-primary mb-2">location_on</span>
+               <p className="text-sm text-white/60 font-medium">{contact.address}</p>
+             </div>
+             <div className="space-y-2">
+               <span className="material-symbols-outlined text-primary mb-2">chat</span>
+               <p className="text-sm text-white/60 font-medium">{contact.whatsapp}</p>
+             </div>
+             <div className="space-y-2">
+               <span className="material-symbols-outlined text-primary mb-2">schedule</span>
+               <p className="text-sm text-white/60 font-medium">{contact.hours}</p>
+             </div>
+          </div>
+
+          <div className="w-full pt-16 border-t border-white/5 flex flex-col items-center gap-10">
+            <p className="text-white/30 text-[11px] font-medium tracking-wide">© 2026 Daikô Sushi Bar. Todos os direitos reservados.</p>
+            
+            <div className="flex flex-col items-center gap-3">
+               <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/10">Desenvolvido por</span>
+               <img src="logotech.png" alt="Tech Lab Ltda." className="h-12 w-auto opacity-50 hover:opacity-100 transition-all filter brightness-200" />
+               <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em]">Tech Lab Ltda.</p>
+            </div>
+          </div>
         </div>
-        <p className="text-white/40 text-sm">© 2024 Daikô Sushi Bar. Todos os direitos reservados.</p>
       </footer>
     </div>
   );
