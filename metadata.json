@@ -1,0 +1,8 @@
+{
+  "name": "Daikô Sushi Bar - Sistema de Gestão e Landing Page",
+  "description": "Uma plataforma completa para gestão de restaurante japonês com landing page institucional de alta conversão.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
